@@ -12,7 +12,6 @@ public class KeyMetricsOutput {
         String floatOutput = FetchFloat.fetchFloat();
         System.out.println("Float: " + floatOutput);
 
-
         String peRatioOutput = FetchPERatio.fetchPERatio();
         System.out.println("PE Ratio: " + peRatioOutput);
 
@@ -22,22 +21,10 @@ public class KeyMetricsOutput {
         String cashFlowOutput = FetchCashFlow.fetchCashFlow();
         System.out.println("Cash Flow per Share: " + cashFlowOutput);
 
+        FetchPreviousClose pc = new FetchPreviousClose();
+        String previousClose = pc.toString();
+        System.out.println("Previous Close: " + previousClose);
 
-        FetchCurrentPrice cp = new FetchCurrentPrice();
-        String currentPriceOutput = cp.method();
-        System.out.println("Current Price: " + currentPriceOutput);
-
-        FetchHighPrice hp = new FetchHighPrice();
-        String highPriceOutput = hp.method();
-        System.out.println("Yearly High Price: " + highPriceOutput);
-
-        FetchLowPrice lp = new FetchLowPrice();
-        String lowPriceOutput = lp.method();
-        System.out.println("Yearly Low Price: " + lowPriceOutput);
-
-        FetchOneYearPriceRange pr = new FetchOneYearPriceRange();
-        Double priceRangeOutput = pr.method();
-        System.out.println("One Year Price Range: " + priceRangeOutput);
 
         ScoreRating score = new ScoreRating();
         int scoreOutput = score.stockScore();

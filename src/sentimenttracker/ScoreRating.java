@@ -6,15 +6,12 @@ public class ScoreRating {
         // outputs a score for the stock. The more points, the better the stock
         int stockScore = 0;
         // if 1 year price range is greater than 20, then 1 point. If less, then 0 points.
-        if (FetchOneYearPriceRange.method() >= 20);
-        {
-            stockScore++;
-        }
+
         // if price is greater than 10 dollars, than 1 points. If less than 10 dollars, then 0 point.
-         if (Double.parseDouble(FetchCurrentPrice.method()) >= 10)
-         {
-             stockScore++;
-         }
+         //if (Double.parseDouble(FetchCurrentPrice.currentPrice()) >= 10)
+        // {
+            // stockScore++;
+         //}
         // If market cap is greater than 1 billion but less than 50 billion, then 1 points.
          // If greater than 50 billion, then 0 point.
 
