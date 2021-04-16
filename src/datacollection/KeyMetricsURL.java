@@ -1,24 +1,18 @@
 package datacollection;
-
-
-import java.io.IOException;
-import java.net.URL;
-import java.net.URLConnection;
+import gui.MainGUI;
 
 public class KeyMetricsURL {
 
-    public static URLConnection fetchKeyMetricsURL() throws IOException
-    {
-        URL keyMetricsURL = new URL ("https://markets.businessinsider.com/stocks/KO-stock");
-        URLConnection PriceURLConnection = keyMetricsURL.openConnection();
-        return PriceURLConnection;
-    }
-
     public static String onlyURL() {
-        String onlyURL =  "https://markets.businessinsider.com/stocks/KO-stock";
-        return onlyURL;
+        if (MainGUI.usableInput != null) {
+            String tickerSymbol = MainGUI.usableInput.toLowerCase();
+            String urlBody1 = "https://markets.businessinsider.com/stocks/";
+            String urlBody2 = "-stock";
+            String finalURL = urlBody1 + tickerSymbol + urlBody2;
+            return finalURL;
+        }
+        return "https://markets.businessinsider.com/stocks/";
     }
-
 }
 
 

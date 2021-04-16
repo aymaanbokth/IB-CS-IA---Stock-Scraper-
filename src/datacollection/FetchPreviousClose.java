@@ -3,13 +3,10 @@ package datacollection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import java.io.IOException;
 
 public class FetchPreviousClose {
-
     public static String previousClose () {
-        String keyMetricsURL = "https://markets.businessinsider.com/stocks/ko-stock";
-
+        String keyMetricsURL = KeyMetricsURL.onlyURL();
         StringBuilder result = new StringBuilder();
         try {
             Document previousCloseDocument = Jsoup.connect(keyMetricsURL).get();
@@ -24,8 +21,8 @@ public class FetchPreviousClose {
         } catch (Exception previousCloseValueDocumentException) {
             previousCloseValueDocumentException.printStackTrace();
         }
-        System.out.println(result.toString());
-        return result.toString();
+        String finalPreviousclose = result.toString();
+        return finalPreviousclose;
     }
 }
 

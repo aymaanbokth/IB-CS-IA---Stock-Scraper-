@@ -16,6 +16,7 @@ public class MainGUI implements Runnable {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.getContentPane().setBackground(Color.decode("#d0eefa"));
         return frame;
     }
 
@@ -27,70 +28,57 @@ public class MainGUI implements Runnable {
     }
 
     public JLabel createLabel2(JFrame frame) throws IOException {
-        JLabel currentPriceLabel = new JLabel("Current Price: ");
-        currentPriceLabel.setBounds(125, 150, 250, 23);
-        frame.getContentPane().add(currentPriceLabel);
-        return currentPriceLabel;
+        JLabel previousCloseLabel = new JLabel("Previous Close: " + FetchPreviousClose.previousClose());
+        previousCloseLabel.setBounds(125, 200, 250, 23);
+        frame.getContentPane().add(previousCloseLabel);
+        return previousCloseLabel;
     }
 
     public JLabel createLabel3(JFrame frame) throws IOException {
-        JLabel highPriceLabel = new JLabel("One Year High Price: " );
-        highPriceLabel.setBounds(125, 200, 250, 23);
-        frame.getContentPane().add(highPriceLabel);
-        return highPriceLabel;
+        JLabel freeFloatLabel = new JLabel("Free Float Percentage: " + FetchFreeFloat.freeFloatOutput());
+        freeFloatLabel.setBounds(125, 250, 250, 23);
+        frame.getContentPane().add(freeFloatLabel);
+        return freeFloatLabel;
     }
 
     public JLabel createLabel4(JFrame frame) throws IOException {
-        JLabel lowPriceLabel = new JLabel("One Year Low Price: ");
-        lowPriceLabel.setBounds(125, 250, 250, 23);
-        frame.getContentPane().add(lowPriceLabel);
-        return lowPriceLabel;
-    }
-
-    public JLabel createLabel5(JFrame frame) {
         JLabel marketCapLabel = new JLabel("Market Cap: " + FetchMarketCap.fetchMarketCap());
-        marketCapLabel.setBounds(475, 150, 250, 23);
+        marketCapLabel.setBounds(125, 300, 250, 23);
         frame.getContentPane().add(marketCapLabel);
         return marketCapLabel;
     }
 
-    public JLabel createLabel6(JFrame frame) throws IOException {
-        JLabel oneYearPriceRangeLabel = new JLabel("One Year Price Range: ");
-        oneYearPriceRangeLabel.setBounds(125, 300, 250, 23);
-        frame.getContentPane().add(oneYearPriceRangeLabel);
-        return oneYearPriceRangeLabel;
-    }
 
-    public JLabel createLabel7(JFrame frame) {
+    public JLabel createLabel5(JFrame frame) {
         JLabel peRatioLabel = new JLabel("PE Ratio: " + FetchPERatio.fetchPERatio());
         peRatioLabel.setBounds(475, 200, 250, 23);
         frame.getContentPane().add(peRatioLabel);
         return peRatioLabel;
     }
 
-    public JLabel createLabel8(JFrame frame) {
+    public JLabel createLabel6(JFrame frame) {
         JLabel floatLabel = new JLabel("Float: " + FetchFloat.fetchFloat());
         floatLabel.setBounds(125, 350, 250, 23);
         frame.getContentPane().add(floatLabel);
         return floatLabel;
     }
 
-    public JLabel createLabel9(JFrame frame) throws IOException {
+    public JLabel createLabel7(JFrame frame) throws IOException {
         JLabel cashFlowLabel = new JLabel("Cash Flow Per Share: " + FetchCashFlow.fetchCashFlow());
         cashFlowLabel.setBounds(475, 250, 250, 23);
         frame.getContentPane().add(cashFlowLabel);
         return cashFlowLabel;
     }
 
-    public JLabel createLabel10(JFrame frame) {
+    public JLabel createLabel8(JFrame frame) {
         JLabel bookValueLabel = new JLabel("Book Value: " + FetchBookValue.fetchBookValue());
         bookValueLabel.setBounds(475, 300, 250, 23);
         frame.getContentPane().add(bookValueLabel);
         return bookValueLabel;
     }
 
-    public JLabel createLabel11(JFrame frame) throws IOException {
-        JLabel scoreLabel = new JLabel("Score Rating: ");
+    public JLabel createLabel9(JFrame frame) throws IOException {
+        JLabel scoreLabel = new JLabel("Score Rating: " + ScoreRating.stockScore());
         scoreLabel.setBounds(475, 350, 250, 23);
         frame.getContentPane().add(scoreLabel);
         return scoreLabel;
@@ -118,15 +106,22 @@ public class MainGUI implements Runnable {
             public void actionPerformed(ActionEvent e)
             {
                 String textInput = input.getText();
-                System.out.println(textInput);
+                MainGUI.usableInput = textInput;
+                run();
                 input.setText("");
+
             }
 
         });
 
     }
+    public static String usableInput;
+
+
+
     public void run() {
         try {
+
             JFrame frame = createFrame();
             JButton button1 = createSearchButton(frame);
             JLabel label1 = createLabel1(frame);
@@ -138,11 +133,10 @@ public class MainGUI implements Runnable {
             JLabel label7 = createLabel7(frame);
             JLabel label8 = createLabel8(frame);
             JLabel label9 = createLabel9(frame);
-            JLabel label10 = createLabel10(frame);
-            JLabel label11 = createLabel11(frame);
             JTextField input = createInput(frame);
             addEventListeners(input,button1);
             frame.setVisible(true);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -150,7 +144,9 @@ public class MainGUI implements Runnable {
 
     public static void main(String[] args) throws IOException {
         EventQueue.invokeLater(new MainGUI());
+
     }
 
-    public MainGUI() {}
 }
+
+
